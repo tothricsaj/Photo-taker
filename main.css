@@ -23,7 +23,7 @@
 
 .camera {
   width: var(--main-width);
-  display:inline-block;
+  display: none;
 }
 
 .output {

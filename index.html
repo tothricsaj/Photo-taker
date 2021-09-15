@@ -10,6 +10,7 @@
 	<title>Photo taker</title>
 </head>
 <body>
+	<div class="loading">Loading....</div>
 	<div class="camera">
 		<video id="video">Video stream not available.</video>
 		<button id="startbutton">Take photo</button>
@@ -58,6 +59,9 @@
 						canvas.setAttribute('width', width);
 						canvas.setAttribute('height', height);
 						streaming = true;
+
+						document.querySelector('.camera').style.display = 'inline-block';
+						document.querySelector('.loading').style.display = 'none';
 					}
 				}, false);
 
