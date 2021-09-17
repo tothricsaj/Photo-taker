@@ -19,8 +19,10 @@
   <canvas id="canvas"></canvas>
 
   <div class="output">
-    <img id="photo" alt="The screen capture will appear in this box.">
+    <!-- <img id="photo" alt="The screen capture will appear in this box."> -->
   </div>
+
+	<a class="img-download" href="" download="output.png">Download</a>
 
 	<script>
 		(function() {
@@ -38,8 +40,10 @@
 			function startup() {
 				video = document.getElementById('video');
 				canvas = document.getElementById('canvas');
-				photo = document.getElementById('photo');
+				// photo = document.getElementById('photo');
 				startbutton = document.getElementById('startbutton');
+				imgDownload = document.querySelector('.img-download');
+				output = document.querySelector('.output');
 
 				navigator.mediaDevices.getUserMedia({ video: true, audio: false })
 					.then(function(stream) {
@@ -90,8 +94,13 @@
 					canvas.height = height;
 					context.drawImage(video, 0, 0, width, height);
 
+					let photo = new Image();
+
 					var data = canvas.toDataURL('image/png');
 					photo.setAttribute('src', data);
+					imgDownload.setAttribute('href', data);
+
+					output.appendChild(photo);
 				} else {
 					clearphoto();
 				}
