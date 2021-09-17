@@ -18,9 +18,7 @@
 
   <canvas id="canvas"></canvas>
 
-  <div class="output">
-    <!-- <img id="photo" alt="The screen capture will appear in this box."> -->
-  </div>
+  <div class="output"></div>
 
 	<script>
 		(function() {
@@ -42,6 +40,8 @@
 				startbutton = document.getElementById('startbutton');
 				imgDownload = document.querySelector('.img-download');
 				output = document.querySelector('.output');
+
+				counter = 0;
 
 				navigator.mediaDevices.getUserMedia({ video: true, audio: false })
 					.then(function(stream) {
@@ -95,7 +95,11 @@
 
 					var data = canvas.toDataURL('image/png');
 				
-					makePhotoLayout(data);
+					if(counter < 10) {
+						makePhotoLayout(data);
+					} else {
+						alert('Sorry, you can take only 10 picture in a same time. Remove from taken!');
+					}
 
 				} else {
 					clearphoto();
@@ -117,7 +121,7 @@
 				close.classList.add('close-button');
 				close.innerText = 'x';
 
-				close.addEventListener('click', () => document.querySelector(`#${id}`).remove());
+				close.addEventListener('click', () => removePicture(id) );
 
 				photo.setAttribute('src', data);
 				photo.classList.add('photo');
@@ -131,6 +135,13 @@
 				wrapper.appendChild(photo);
 				wrapper.appendChild(save);
 				output.appendChild(wrapper);
+
+				counter++;
+			}
+
+			function removePicture(id) {
+				document.querySelector(`#${id}`).remove()
+				counter--;
 			}
 
 			window.addEventListener('load', startup, false);
