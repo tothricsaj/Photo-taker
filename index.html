@@ -98,6 +98,7 @@
 
 					var data = canvas.toDataURL('image/png');
 					photo.setAttribute('src', data);
+					photo.classList.add('photo');
 					imgDownload.setAttribute('href', data);
 
 					output.appendChild(photo);
