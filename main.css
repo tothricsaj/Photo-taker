@@ -10,11 +10,38 @@
   height:240px; */
 }
 
+.photo-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
 .photo {
   border: 1px solid black;
   box-shadow: 2px 2px 3px black;
   width:320px;
   height:240px;
+}
+
+.close-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 5px 10px;
+  border: 1px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  background: red;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  padding: 10px;
+  text-decoration: none;
+  background: gray;
+  color: orange;
 }
 
 #canvas {

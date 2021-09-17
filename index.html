@@ -22,8 +22,6 @@
     <!-- <img id="photo" alt="The screen capture will appear in this box."> -->
   </div>
 
-	<a class="img-download" href="" download="output.png">Download</a>
-
 	<script>
 		(function() {
 
@@ -94,17 +92,46 @@
 					canvas.height = height;
 					context.drawImage(video, 0, 0, width, height);
 
-					let photo = new Image();
 
 					var data = canvas.toDataURL('image/png');
-					photo.setAttribute('src', data);
-					photo.classList.add('photo');
-					imgDownload.setAttribute('href', data);
+				
+					makePhotoLayout(data);
 
-					output.appendChild(photo);
 				} else {
 					clearphoto();
 				}
+			}
+
+			function makePhotoLayout(data) {
+
+				let wrapper = document.createElement('div');
+				let close = document.createElement('div');
+				let photo = new Image();
+				let save = document.createElement('a');
+
+				wrapper.classList.add('photo-wrapper');
+
+				close.classList.add('close-button');
+				close.innerText = 'x';
+
+				close.addEventListener('click', removeImage);
+
+				photo.setAttribute('src', data);
+				photo.classList.add('photo');
+
+				save.setAttribute('href', data);
+				save.setAttribute('download', 'output.png');
+				save.classList.add('save-button');
+				save.innerText = 'SAVE';
+
+				wrapper.appendChild(close);
+				wrapper.appendChild(photo);
+				wrapper.appendChild(save);
+				output.appendChild(wrapper);
+			}
+
+			function removeImage() {
+				console.log('image removed');
 			}
 
 			window.addEventListener('load', startup, false);
