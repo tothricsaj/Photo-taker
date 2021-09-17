@@ -109,12 +109,15 @@
 				let photo = new Image();
 				let save = document.createElement('a');
 
+				let id = `image-${Math.ceil(Math.random() * 3000)}`;
+
 				wrapper.classList.add('photo-wrapper');
+				wrapper.setAttribute('id', id);
 
 				close.classList.add('close-button');
 				close.innerText = 'x';
 
-				close.addEventListener('click', removeImage);
+				close.addEventListener('click', () => document.querySelector(`#${id}`).remove());
 
 				photo.setAttribute('src', data);
 				photo.classList.add('photo');
@@ -128,10 +131,6 @@
 				wrapper.appendChild(photo);
 				wrapper.appendChild(save);
 				output.appendChild(wrapper);
-			}
-
-			function removeImage() {
-				console.log('image removed');
 			}
 
 			window.addEventListener('load', startup, false);
